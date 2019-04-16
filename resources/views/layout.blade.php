@@ -29,7 +29,28 @@
                 display: flex;
                 justify-content: center;
             }
+.footer {
+display:block;
+width: 100%;
+}
+#item_container {
+width:100%;
+overflow: hidden;
 
+            }
+           .items {
+                display: inline;
+                float: left;
+                text-align: left;
+                width: 200px;
+            }
+.main {
+                width: 100%
+            }
+#attribution{
+                display:block;
+
+            }
             .position-ref {
                 position: relative;
             }
@@ -67,11 +88,14 @@
                 margin-bottom: 30px;
                 padding-top:30px;
             }
+	 h2 {
+text-align:center;
+	 }
         </style>
     </head>
     <body>
  <div class="position-ref full-height">
-       
+j       
        @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -89,22 +113,23 @@
                 <div class="title m-b-md">
                           @yield('headline')
                 </div>
-
+                              
 
 <div class="innner_content">
 @yield('inner_content')
     </div>
+    </div>
+   <div class="footer">
                     <div class="links">
           
                     <a href="/">Search Character</a>
                            
                 </div>
 
-                      <div class="attribution">
+                      <div id="attribution">
                                 @yield('attribution')
                                 </div>
                       </div>
 </div>
-
     </body>
 </html>

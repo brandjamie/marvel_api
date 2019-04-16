@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Marvel Characters</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -81,9 +81,21 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Marvel Characters
                 </div>
+<div class="search">
+    <form method="POST" action="/characters">
+    {{ csrf_field() }}                            
+<div>
+<input type="text" name="name" placeholder="Spider-Man">
 
+</div>
+    <div>
+         <button type="submit">Get info</button>
+                                       </div>
+                                             </form>
+
+</div>
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>

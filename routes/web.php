@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::post('/characters','CharactersController@get');
+
+
 Route::get('/marvel', function () {
     return view('marvel');
 });
