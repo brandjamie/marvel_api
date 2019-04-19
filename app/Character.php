@@ -9,4 +9,11 @@ class Character extends Model
     protected $table = 'characters';
     protected $primaryKey = 'id';
     public $incrementing = false;
+
+    public function comics()
+    {
+       
+        return $this->hasMany(CharacterComic::class);
+    }
+
 }

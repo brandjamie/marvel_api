@@ -47,25 +47,48 @@ class CharactersController extends Controller
         
         $json = json_decode(file_get_contents($url . $getdata, false, $context), true);
         if ($json) {
+            // create new character if it doesn't exist (otherwise)
             if (!$character) {
                 $character = new \App\Character();
             }
             $character->id = $json['data']['results'][0]['id'];
             $character->name = $json['data']['results'][0]['name'];
             $character->description = $json['data']['results'][0]['description'];
-
-
             $image_url = $json['data']['results'][0]['thumbnail']['path'] . "." . $json['data']['results'][0]['thumbnail']['extension'];
             $character->thumbnail = $image_url;
             $character->etag = $json['etag'];
             $character->attribution = $json['attributionText'];
-        
             $character->save();
+
+
+
+            // add character-comics if neccesary
+            foreach ($json['data']['results'][0]['comics']['items'] as $comic) {
+                // get id from uri
+                $comic_uri_array = explode("/",$comic['resourceURI']);
+                $comic_id = end($comic_uri_array);
+                
+                $character_comic = \App\CharacterComic::where('character_id', $character->id)->where('comic_id', $comic_id)->first();
+
+                if (!$character_comic) {
+                    $character_comic = new \App\CharacterComic;
+                    $character_comic->character_id = $character->id;
+                    $character_comic->comic_id = $comic_id;
+                    $character_comic->save();
+                }
+
+                $comic_item = \App\Comic::find($comic_id);
+                if (!$comic_item) {
+                        $comic_item = new \App\Comic;
+                        $comic_item->id = $comic_id;
+                        $comic_item->name = $comic['name'];
+                        $comic_item->save();
+                }
+            }
         }
     
         
-
-
+        
 
 
 

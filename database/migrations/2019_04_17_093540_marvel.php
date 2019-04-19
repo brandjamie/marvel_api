@@ -60,13 +60,13 @@ class Marvel extends Migration
         });
 
         // create many to many link tables
-        Schema::create('character-comics', function (Blueprint $table) {
+        Schema::create('character-comic', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('character_id');
-            $table->integer('comics_id');
+            $table->integer('comic_id');
             $table->timestamps();
         });
-        Schema::create('character-events', function (Blueprint $table) {
+        Schema::create('character-event', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('character_id');
             $table->integer('events_id');
@@ -78,7 +78,7 @@ class Marvel extends Migration
             $table->integer('series_id');
             $table->timestamps();
         });
-        Schema::create('character-stories', function (Blueprint $table) {
+        Schema::create('character-story', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('character_id');
             $table->integer('stories_id');
