@@ -14,66 +14,75 @@ class Marvel extends Migration
     public function up()
     {
         Schema::create('characters', function (Blueprint $table) {
-            $table->integer('id');
+            $table->integer('id')->unique();
             $table->string('name');
-            $table->text('description');
-            $table->string('thumbnail');
-            $table->string('etag');
-            $table->string('attribution');
+            $table->text('description')->nullable();
+            $table->string('thumbnail')->nullable();
+            $table->string('etag')->nullable();
+            $table->string('attribution')->nullable();
+            $table->timestamps();
         });
         Schema::create('comics', function (Blueprint $table) {
-            $table->integer('id');
+            $table->integer('id')->unique();
             $table->string('name');
-            $table->text('description');
-            $table->string('etag');
-            $table->string('thumbnail');
-            $table->string('attribution');
+            $table->text('description')->nullable();
+            $table->string('etag')->nullable();
+            $table->string('thumbnail')->nullable();
+            $table->string('attribution')->nullable();
+            $table->timestamps();
         });
         Schema::create('events', function (Blueprint $table) {
-            $table->integer('id');
+            $table->integer('id')->unique();
             $table->string('name');
-            $table->text('description');
-            $table->string('thumbnail');
-            $table->string('etag');
-            $table->string('attribution');
+            $table->text('description')->nullable();
+            $table->string('thumbnail')->nullable();
+            $table->string('etag')->nullable();
+            $table->string('attribution')->nullable();
+            $table->timestamps();
         });
         Schema::create('series', function (Blueprint $table) {
-            $table->integer('id');
+            $table->integer('id')->unique();
             $table->string('name');
-            $table->text('description');
-            $table->string('thumbnail');
-            $table->string('etag');
-            $table->string('attribution');
+            $table->text('description')->nullable();
+            $table->string('thumbnail')->nullable();
+            $table->string('etag')->nullable();
+            $table->string('attribution')->nullable();
+            $table->timestamps();
         });
         Schema::create('stories', function (Blueprint $table) {
-            $table->integer('id');
+            $table->integer('id')->unique();
             $table->string('name');
-            $table->text('description');
-            $table->string('thumbnail');
-            $table->string('etag');
-            $table->string('attribution');
+            $table->text('description')->nullable();
+            $table->string('thumbnail')->nullable();
+            $table->string('etag')->nullable();
+            $table->string('attribution')->nullable();
+            $table->timestamps();
         });
 
         // create many to many link tables
         Schema::create('character-comics', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('character_id');
-            $table->integer('comics_id');                
+            $table->integer('comics_id');
+            $table->timestamps();
         });
         Schema::create('character-events', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('character_id');
-            $table->integer('events_id');                
+            $table->integer('events_id');
+            $table->timestamps();
         });
         Schema::create('character-series', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('character_id');
-            $table->integer('series_id');                
+            $table->integer('series_id');
+            $table->timestamps();
         });
         Schema::create('character-stories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('character_id');
-            $table->integer('stories_id');                
+            $table->integer('stories_id');
+            $table->timestamps();
         });
         
 

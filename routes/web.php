@@ -16,7 +16,10 @@ Route::get('/', function () {
 });
 
 
-Route::post('/characters','CharactersController@get');
+//Route::get('/characters','CharactersController@index');
+
+
+Route::post('/characters','CharactersController@get_char');
 
 
 Route::get('/marvel', function () {
