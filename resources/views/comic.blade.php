@@ -5,7 +5,7 @@
 
 @section('inner_content')
 
-    {{ $comic->description }}
+    {!! $comic->description !!}
 
     <br>
 Date of Sale : {{ $comic->onsaledate }}

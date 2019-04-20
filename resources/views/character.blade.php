@@ -5,7 +5,7 @@
 
 @section('inner_content')
 
-    {{ $character->description }}
+    {!! $character->description !!}
     <br>
 
     <img src='{{ $character->thumbnail }}' width="200px"/>
