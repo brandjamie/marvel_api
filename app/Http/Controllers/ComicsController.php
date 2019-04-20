@@ -61,7 +61,7 @@ class ComicsController extends Controller
             
 
 
-            // add comic-comics if neccesary
+            // add comic-characters if neccesary
             foreach ($json['data']['results'][0]['characters']['items'] as $character) {
                 // get id from uri
                 $character_uri_array = explode("/",$character['resourceURI']);
@@ -98,7 +98,7 @@ class ComicsController extends Controller
 
     private function add_character($character_id,$comic_id,$character_name) {
         // get charactercharacter link if exists
-        $character_comic = \App\CharacterComic::where('character_id', $character_id)->where('character_id', $character_id)->first();
+        $character_comic = \App\CharacterComic::where('character_id', $character_id)->where('comic_id', $comic_id)->first();
         // create new character character if it doesn't exist
         if (!$character_comic) {
             $character_comic = new \App\CharacterComic;
