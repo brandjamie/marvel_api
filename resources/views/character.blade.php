@@ -31,7 +31,7 @@
 	    <h2>Stories</h2>
 	    <ul>
 		@foreach ( $character->stories as $story_item )
-		    <li> {{ $story_item->story()->first()->name}} </li>
+		    <li> <a href="stories?id={{ $story_item->story()->first()->id }}">{{ $story_item->story()->first()->name}} </a></li>
 		@endforeach
 	    </ul>
 	</div>
