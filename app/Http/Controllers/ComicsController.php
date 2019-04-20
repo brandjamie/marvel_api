@@ -57,6 +57,13 @@ class ComicsController extends Controller
             $comic->thumbnail = $image_url;
             $comic->etag = $json['etag'];
             $comic->attribution = $json['attributionText'];
+            // get for sale date if present
+            foreach ($json['data']['results'][0]['dates'] as $date) {
+                if ($date['type'] == 'onsaleDate') {
+                    $thisdate=explode("T",$date['date']);
+                    $comic->onsaledate = $thisdate[0];
+                }
+            }
             $comic->save();
             
 

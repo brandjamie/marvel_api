@@ -6,8 +6,10 @@
 @section('inner_content')
 
     {{ $comic->description }}
-    <br>
 
+    <br>
+Date of Sale : {{ $comic->onsaledate }}
+<br>
     <img src='{{ $comic->thumbnail }}' width="200px"/>
 
     <div id="item_container">

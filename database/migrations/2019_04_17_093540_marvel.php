@@ -29,6 +29,7 @@ class Marvel extends Migration
             $table->string('etag')->nullable();
             $table->string('thumbnail')->nullable();
             $table->string('attribution')->nullable();
+            $table->date('onsaledate')->nullable();
             $table->timestamps();
         });
         Schema::create('events', function (Blueprint $table) {
@@ -58,7 +59,7 @@ class Marvel extends Migration
             $table->string('attribution')->nullable();
             $table->timestamps();
         });
-
+      
         // create many to many link tables
         Schema::create('character-comic', function (Blueprint $table) {
             $table->bigIncrements('id');
