@@ -39,7 +39,7 @@
 	    <h2>Series</h2>
 	    <ul>
 		@foreach ( $character->series as $series_item )
-		    <li> {{ $series_item->series()->first()->name}} </li>
+		    <li> <a href="series?id={{ $series_item->series()->first()->id }}" >{{ $series_item->series()->first()->name}} </a></li>
 		@endforeach
 	    </ul>
 	</div>

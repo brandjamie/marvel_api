@@ -115,6 +115,13 @@ class Marvel extends Migration
             $table->integer('event_id');
             $table->timestamps();
         });
+        Schema::create('series-story', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('story_id');
+            $table->integer('series_id');
+            $table->timestamps();
+        });
+
         
     }
 
