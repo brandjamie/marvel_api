@@ -14,7 +14,7 @@
 	    <h2>Comics</h2>
 	    <ul>
 		@foreach ( $story->comics as $comic_item )
-		    <li> {{ $comic_item->comic()->first()->name}} </li>
+		    <li><a href="comics?id={{ $comic_item->comic()->first()->id }}"> {{ $comic_item->comic()->first()->name}}</a> </li>
 		@endforeach
 	    </ul>
 	</div>
@@ -22,7 +22,7 @@
 	    <h2>Events</h2>
 	    <ul>
 		@foreach ( $story->events as $event_item )
-		    <li> {{ $event_item->event()->first()->name}} </li>
+		     <li><a href="events?id={{ $event_item->event()->first()->id}}"> {{ $event_item->event()->first()->name}} </a> </li>
 		@endforeach
 	    </ul>
 	</div>
@@ -30,7 +30,7 @@
 	    <h2>Series</h2>
 	    <ul>
 		@foreach ( $story->series as $series_item )
-		    <li> {{ $series_item->series()->first()->name}} </li>
+		      <li> <a href="series?id={{ $series_item->series()->first()->id }}" >{{ $series_item->series()->first()->name}} </a></li>
 		@endforeach
 	    </ul>
 	</div>
