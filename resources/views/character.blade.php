@@ -23,7 +23,7 @@
 	    <h2>Events</h2>
 	    <ul>
 		@foreach ( $character->events as $event_item )
-		    <li> {{ $event_item->event()->first()->name}} </li>
+		    <li><a href="events?id={{ $event_item->event()->first()->id}}"> {{ $event_item->event()->first()->name}} </a> </li>
 		@endforeach
 	    </ul>
 	</div>

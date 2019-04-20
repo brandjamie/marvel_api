@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 
 Route::post('/characters','CharactersController@get_character_by_name');
+Route::get('/events','EventsController@get_event');
 
 Route::get('/comics','ComicsController@get_comic');
 Route::get('/character','CharactersController@get_character');
