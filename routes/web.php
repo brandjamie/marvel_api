@@ -19,9 +19,10 @@ Route::get('/', function () {
 //Route::get('/characters','CharactersController@index');
 
 
-Route::post('/characters','CharactersController@get_char');
+Route::post('/characters','CharactersController@get_character_by_name');
 
-
+Route::get('/comics','ComicsController@get_comic');
+Route::get('/character','CharactersController@get_character');
 Route::get('/marvel', function () {
     return view('marvel');
 });

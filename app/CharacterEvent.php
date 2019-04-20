@@ -4,11 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CharacterSeries extends Model
+class CharacterEvent extends Model
 {
-    protected $table = 'character-series';
-    public function series() {
-        return $this->belongsTo(Series::class);
+    protected $table = 'character-event';
+
+    public function event() {
+        return $this->belongsTo(Event::class);
     }
     public function character() {
         return $this->belongsTo(Character::class);

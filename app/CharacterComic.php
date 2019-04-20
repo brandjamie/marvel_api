@@ -11,4 +11,7 @@ class CharacterComic extends Model
     public function comic() {
         return $this->belongsTo(Comic::class);
     }
+    public function character() {
+        return $this->belongsTo(Character::class);
+    }
 }
