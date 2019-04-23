@@ -164,10 +164,10 @@ class StoriesController extends Controller
     }
     private function add_event($event_id,$story_id,$event_name) {
         // get storyevent link if exists
-        $story_event = \App\StoryEvent::where('story_id', $story_id)->where('event_id', $event_id)->first();
+        $story_event = \App\EventStory::where('story_id', $story_id)->where('event_id', $event_id)->first();
         // create new story event if it doesn't exist
         if (!$story_event) {
-            $story_event = new \App\StoryEvent;
+            $story_event = new \App\EventStory;
             $story_event->story_id = $story_id;
             $story_event->event_id = $event_id;
             $story_event->save();
@@ -188,7 +188,7 @@ class StoriesController extends Controller
     
     public function get_story() {
         $id = request()->id;
-        $story = $this->get_story_by_id($id);
-        return view('story',compact('story'));
+        $data = $this->get_story_by_id($id);
+        return view('view_item',compact('data'));
     }
 }

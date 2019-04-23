@@ -249,14 +249,14 @@ class CharactersController extends Controller
     
     public function get_character_by_name() {
         $name = request()->name;
-        $character = $this->get_char_by_name($name);
-        return view('character',compact('character'));
+        $data = $this->get_char_by_name($name);
+        return view('veiw_item',compact('data'));
     }
 
     public function get_character() {
         $id = request()->id;
-        $character = $this->get_character_by_id($id);
-        return view('character',compact('character'));
+        $data = $this->get_character_by_id($id);
+        return view('view_item',compact('data'));
 
     }
 }

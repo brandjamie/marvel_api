@@ -164,10 +164,10 @@ class SeriesController extends Controller
     }
     private function add_event($event_id,$series_id,$event_name) {
         // get seriesevent link if exists
-        $series_event = \App\SeriesEvent::where('series_id', $series_id)->where('event_id', $event_id)->first();
+        $series_event = \App\EventSeries::where('series_id', $series_id)->where('event_id', $event_id)->first();
         // create new series event if it doesn't exist
         if (!$series_event) {
-            $series_event = new \App\SeriesEvent;
+            $series_event = new \App\EventSeries;
             $series_event->series_id = $series_id;
             $series_event->event_id = $event_id;
             $series_event->save();
@@ -188,7 +188,7 @@ class SeriesController extends Controller
     
     public function get_series() {
         $id = request()->id;
-        $series = $this->get_series_by_id($id);
-        return view('series',compact('series'));
+        $data = $this->get_series_by_id($id);
+        return view('view_item',compact('data'));
     }
 }

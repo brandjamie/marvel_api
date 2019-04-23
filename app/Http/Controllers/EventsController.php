@@ -188,7 +188,7 @@ class EventsController extends Controller
     
     public function get_event() {
         $id = request()->id;
-        $event = $this->get_event_by_id($id);
-        return view('event',compact('event'));
+        $data = $this->get_event_by_id($id);
+        return view('view_item',compact('data'));
     }
 }

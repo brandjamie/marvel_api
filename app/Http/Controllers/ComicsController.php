@@ -196,7 +196,7 @@ class ComicsController extends Controller
     
     public function get_comic() {
         $id = request()->id;
-        $comic = $this->get_comic_by_id($id);
-        return view('comic',compact('comic'));
+        $data = $this->get_comic_by_id($id);
+        return view('view_item',compact('data'));
     }
 }
