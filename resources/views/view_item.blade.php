@@ -83,7 +83,9 @@
 
 @endsection
 
-
+@section('links')
+    <a href="/">Search for a Character</a>
+@endsection
 
 @section('attribution')
     

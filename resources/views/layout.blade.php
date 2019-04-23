@@ -32,6 +32,7 @@
 	 .footer {
 	     display:block;
 	     width: 100%;
+	     
 	 }
 	 #item_container {
 	     width:100%;
@@ -57,7 +58,8 @@
          }
 	 #attribution{
              display:block;
-
+	     text-align:center;
+	     margin:30px;
          }
          .position-ref {
              position: relative;
@@ -80,7 +82,10 @@
              text-align: center;
              font-size: 84px;
          }
-
+	 .links {
+	     display: block;
+	     text-align:center;
+	 }
 
          .links > a {
              color: #636b6f;
@@ -157,7 +162,7 @@
 	<div class="footer">
 	    <div class="links">
 		
-		<a href="/">Search Character</a>
+		@yield('links')
 		
 	    </div>
 

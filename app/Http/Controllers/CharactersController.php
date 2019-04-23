@@ -66,10 +66,9 @@ class CharactersController extends Controller
         // get data from api
         $json = json_decode(file_get_contents($url . $getdata, false, $context), true);
         // if new results are recieved
-        if ($json) {
+        if ($json  and count($json['data']['results']) > 0) {
             $character = $this->updateDB($json,$character);
         }
-            
         return ($character);
     }
 
@@ -265,18 +264,25 @@ class CharactersController extends Controller
         }
                 
     }
+    // get character from name in url
     public function show($name) {
         $data = $this->get_char_by_name($name);
-        return view('view_item',compact('data'));
+        // go to characters page if data not recieved
+        if ($data) {
+            return view('view_item',compact('data'));
+        } else {
+            $data = $this->get_characters_by_page(0);
+            $not_found = $name;
+            return view('characters',compact('data','not_found'));
+        }
     }
-    
+    // get character from post query
     public function get_character_by_name() {
         $name = request()->name;
         $data = $this->get_char_by_name($name);
         if ($data) {
         return view('view_item',compact('data'));
-        }
-        else {
+        } else {
             $data = $this->get_characters_by_page(0);
             $not_found = $name;
             return view('characters',compact('data','not_found'));

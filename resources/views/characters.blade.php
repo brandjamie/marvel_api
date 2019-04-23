@@ -4,7 +4,7 @@
 @endsection
 
 @section('inner_content')
-    @if ($not_found)
+    @if (isset($not_found))
 	<br>
 	Sorry: {{$not_found}} was not found.
 	<br>
@@ -36,16 +36,17 @@
 	</ul>
 	<br>
 	<br>
-	<div class="links">
-	    @if (Request()->page)
-		<a href ="characters?page={{ Request()->page - 1 }}">Previous Page</a>
-		<a href ="characters?page={{ Request()->page + 1 }}">Next Page</a>
-	    @else
-		<a href ="characters?page=1">Next Page</a>
-    @endif
     </div>
-</div>
 
+@endsection
+
+@section('links')
+	@if (Request()->page)
+	    <a href ="characters?page={{ Request()->page - 1 }}">Previous Page</a>
+	    <a href ="characters?page={{ Request()->page + 1 }}">Next Page</a>
+	@else
+	    <a href ="characters?page=1">Next Page</a>
+	@endif
 @endsection
 
 @section('attribution')
