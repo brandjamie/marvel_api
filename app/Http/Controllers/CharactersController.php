@@ -15,6 +15,29 @@ class CharactersController extends Controller
         $hash = md5($ts . $private_key . $public_key);
         // number of results per page
         $limit = 100;
+
+
+        // get character index if in database
+        $characters_index = \App\CharactersIndex::find($page);
+        // set headers depending on whether etag / cached is available
+        if (!$characters_index or !$characters_index->etag) {
+            $opts = array(
+                'http'=>array(
+                    'method'=>"GET"
+                )
+            );
+        } else {
+            $opts = array(
+                'http'=>array(
+                    'method'=>"GET",
+                    'header'=>"If-None-Match:" . $characters_index->etag
+                )
+            );
+        }
+
+        // create context for headers (needed for etag)
+        $context = stream_context_create($opts);
+        
         $getdata = http_build_query(
             array(
                 'ts' => $ts,
@@ -25,9 +48,33 @@ class CharactersController extends Controller
             )
         );
         // get data from api
-        $json = json_decode(file_get_contents($url . $getdata), true);
-        return ($json);
+        $json = json_decode(file_get_contents($url . $getdata, false, $context), true);
+        // if new results are recieved
+        if ($json  and count($json['data']['results']) > 0) {
+            // add page index for each character
+            foreach ($json['data']['results'] as $result) {
+                //
+                $character = \App\Character::find($result['id']);
+                if (!$character) {
+                    $character = new \App\Character();
+                    $character->id = $result['id'];
+                    $character->name = $result['name'];
+                }
+                $character->characters_index_id = $page;
+                $character->save();
+            }
+            $characters_index = \App\CharactersIndex::find($page);
+            if (!$characters_index) {
+                $characters_index = new \App\CharactersIndex();
+                $characters_index->id = $page;
+            }
+            $characters_index->etag = $json['etag'];
+            $characters_index->save();                  
+        }
+        return ($characters_index);
     }
+
+    
     private function get_character_by_id($id) {
         $public_key = env('MARVEL_API_PUBLIC_KEY');
         $private_key = env('MARVEL_API_PRIVATE_KEY');

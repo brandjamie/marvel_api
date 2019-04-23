@@ -26,10 +26,10 @@
     </div>
     <div id="examples_container">
 	<ul>
-	    @foreach ($data['data']['results'] as $result)
+	    @foreach ($data->characters as $character)
 		<li class="examples">
-		    <a href="/characters/{{ $result['name'] }}">
-			{{ $result['name'] }}		    
+		    <a href="/characters/{{ $character->name }}">
+			{{ $character->name }}		    
 		    </a>
 		</li>
 	    @endforeach
