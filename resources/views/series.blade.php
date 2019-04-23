@@ -26,14 +26,15 @@
 		@endforeach
 	    </ul>
 	</div>
-   	<div class="items">
-	    <h2>Event</h2>
-	    <ul>
-		@foreach ( $series->events as $event_item )
-		   	    <li><a href="events?id={{ $event_item->event()->first()->id}}"> {{ $event_item->event()->first()->name}} </a> </li>
-		@endforeach
-	    </ul>
-	</div>
+	    <div class="items">
+		<h2>Event</h2>
+		<ul>
+		    @foreach ( $series->events as $event_item )
+		   	<li><a href="events?id={{ $event_item->event()->first()->id}}"> {{ $event_item->event()->first()->name}} </a> </li>
+		    @endforeach
+		</ul>
+	    </div>
+	    
 	<div class="items">
 	    <h2>Characters</h2>
 	    <ul>
