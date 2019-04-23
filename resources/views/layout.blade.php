@@ -43,6 +43,7 @@
              float: left;
              text-align: left;
              width: 200px;
+	     padding: 30px;
          }
 	 .main {
              width: 100%
@@ -90,6 +91,28 @@
          }
 	 h2 {
 	     text-align:center;
+	 }
+	 ul {
+	     list-style-type: none;
+	     margin:0;
+	     padding:0;
+	 }
+	 li {
+	     font-size: 15px;
+	 }
+	 li a {
+	     text-decoration:none;
+	     color: #000;
+	     -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+	     -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+	     -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+	     -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+	     transition: font-size 0.3s ease, background-color 0.3s ease;
+	 }
+	 li a:hover {
+	     font-size: 20px;
+	     background: #f6f6f6
+
 	 }
         </style>
     </head>
