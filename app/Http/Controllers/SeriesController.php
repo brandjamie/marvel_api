@@ -187,8 +187,12 @@ class SeriesController extends Controller
 
     
     public function get_series() {
-        $id = request()->id;
-        $data = $this->get_series_by_id($id);
-        return view('view_item',compact('data'));
+        if (request()->id) {
+            $id = request()->id;
+            $data = $this->get_series_by_id($id);
+            return view('view_item',compact('data'));
+        } else {
+            return redirect('/');
+        }
     }
 }

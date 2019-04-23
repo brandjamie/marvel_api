@@ -187,8 +187,13 @@ class StoriesController extends Controller
 
     
     public function get_story() {
-        $id = request()->id;
-        $data = $this->get_story_by_id($id);
-        return view('view_item',compact('data'));
+        if (request()->id) {
+            $id = request()->id;
+            $data = $this->get_story_by_id($id);
+            return view('view_item',compact('data'));
+        } else {
+            return redirect('/');
+        }
+
     }
 }
