@@ -38,6 +38,13 @@
 	     overflow: hidden;
 
          }
+	 #examples_container {
+	     max-width:700px;
+	     margin-top:50px;
+	     margin-bottom: 50px;
+	     margin-left:auto;
+	     margin-right:auto;
+	 }
          .items {
              display: inline;
              float: left;
@@ -100,6 +107,11 @@
 	 li {
 	     font-size: 15px;
 	 }
+	 li.examples {
+	     display:inline-block;
+	     padding-left:20px;
+	     padding-top: 5px;
+	 }
 	 li a {
 	     text-decoration:none;
 	     color: #000;
@@ -112,7 +124,9 @@
 	 li a:hover {
 	     font-size: 20px;
 	     background: #f6f6f6
-
+	 }
+	 li.examples a:hover {
+	     font-size: 15px;
 	 }
         </style>
     </head>

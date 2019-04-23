@@ -6,6 +6,28 @@ use Illuminate\Http\Request;
 
 class CharactersController extends Controller
 {
+    // get all characters from page n
+    private function get_characters_by_page($page) {
+        $public_key = env('MARVEL_API_PUBLIC_KEY');
+        $private_key = env('MARVEL_API_PRIVATE_KEY');
+        $url = "http://gateway.marvel.com/v1/public/characters?";
+        $ts = strval(time());
+        $hash = md5($ts . $private_key . $public_key);
+        // number of results per page
+        $limit = 100;
+        $getdata = http_build_query(
+            array(
+                'ts' => $ts,
+                'apikey' => $public_key,
+                'hash'=>$hash,
+                'limit'=>$limit,
+                'offset'=>$page * $limit
+            )
+        );
+        // get data from api
+        $json = json_decode(file_get_contents($url . $getdata), true);
+        return ($json);
+    }
     private function get_character_by_id($id) {
         $public_key = env('MARVEL_API_PUBLIC_KEY');
         $private_key = env('MARVEL_API_PRIVATE_KEY');
@@ -93,12 +115,10 @@ class CharactersController extends Controller
         // get data from api
         $json = json_decode(file_get_contents($url . $getdata, false, $context), true);
         // if new results are recieved
-        if ($json) {
+        if ($json and count($json['data']['results']) > 0) {
             $character = $this->updateDB($json,$character);
         }
-            
         return ($character);
-
     }
 
 
@@ -245,18 +265,35 @@ class CharactersController extends Controller
         }
                 
     }
-
+    public function show($name) {
+        $data = $this->get_char_by_name($name);
+        return view('view_item',compact('data'));
+    }
     
     public function get_character_by_name() {
         $name = request()->name;
         $data = $this->get_char_by_name($name);
-        return view('veiw_item',compact('data'));
+        if ($data) {
+        return view('view_item',compact('data'));
+        }
+        else {
+            $data = $this->get_characters_by_page(0);
+            $not_found = $name;
+            return view('characters',compact('data','not_found'));
+        }
     }
 
     public function get_character() {
         $id = request()->id;
         $data = $this->get_character_by_id($id);
         return view('view_item',compact('data'));
-
+    }
+    public function get_characters() {
+        $page = request()->page;
+        if (!$page) {
+            $page = 0;
+        }
+        $data = $this->get_characters_by_page($page);
+        return view('characters',compact('data'));
     }
 }

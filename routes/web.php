@@ -26,6 +26,9 @@ Route::get('/stories','StoriesController@get_story');
 
 Route::get('/comics','ComicsController@get_comic');
 Route::get('/character','CharactersController@get_character');
+Route::get('/characters','CharactersController@get_characters');
+Route::get('/characters/{character}','CharactersController@show');
+
 Route::get('/marvel', function () {
     return view('marvel');
 });
