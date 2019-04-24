@@ -337,9 +337,13 @@ class CharactersController extends Controller
     }
 
     public function get_character() {
-        $id = request()->id;
-        $data = $this->get_character_by_id($id);
-        return view('view_item',compact('data'));
+        if (request()->id) {
+            $id = request()->id;
+            $data = $this->get_character_by_id($id);
+            return view('view_item',compact('data'));
+        } else {
+            return redirect('/');
+        }
     }
     public function get_characters() {
         $page = request()->page;
